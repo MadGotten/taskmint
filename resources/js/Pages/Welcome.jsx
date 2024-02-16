@@ -38,18 +38,18 @@ export default function Welcome({ auth }) {
                     </h1>
                     <div className="grid grid-cols-3 text-left mt-12 gap-4">
                         <div>
-                            <span className="font-medium text-lg text-amber-700">Board Creation</span> Taskmint allows users to create customizable boards to organize tasks efficiently.
+                            <span className="font-bold text-lg text-amber-700">Board Creation</span> Taskmint allows users to create customizable boards to organize tasks efficiently.
                             Users can categorize tasks based on projects, teams, or any preferred criteria,
                             enabling clear visibility and streamlined management.
                         </div>
                         <div>
-                            <span className="font-medium text-lg text-cyan-700">Streamlined Workflow Management</span> Taskmint facilitates seamless workflow management by providing intuitive tools for task assignment,
+                            <span className="font-bold text-lg text-cyan-700">Streamlined Workflow Management</span> Taskmint facilitates seamless workflow management by providing intuitive tools for task assignment,
                             deadline setting, and progress monitoring. With customizable status labels,
                             users can easily identify tasks that require attention, are in progress, or have been completed,
                             fostering greater efficiency and accountability within teams.
                         </div>
-                        <div className="text-gray-300">
-                            <span className="font-medium text-lg text-emerald-700">Task Tracking</span> Taskmint allows to track your status and data within each board,
+                        <div>
+                            <span className="font-bold text-lg text-emerald-700">Task Tracking</span> Taskmint allows to track your status and data within each board,
                             users can create tasks with detailed information including status updates,
                             due dates, descriptions, and titles. This granular level of data empowers users to track progress,
                             set priorities, and collaborate effectively with team members.
