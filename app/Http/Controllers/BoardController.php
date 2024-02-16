@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BoardRequest;
+use App\Models\Board;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,9 +51,14 @@ class BoardController extends Controller
      */
     public function show(string $id)
     {
-        $tasks = Auth::user()->boards()->findOrFail($id)->tasks()->get();
+        $user = Auth::user();
+
+        $board = $user->boards()->findOrFail($id);
+
+        $tasks = $board->tasks()->get();
+
         return Inertia::render('Board/Show', [
-            'board_id' => $id,
+            'board' => $board,
             'tasks' => $tasks,
         ]);
     }
@@ -60,17 +66,23 @@ class BoardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Board $board)
     {
-        //
+        return Inertia::render('Board/Edit', [
+            'board' => $board,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BoardRequest $request, string $id)
     {
-        //
+        $user = Auth::user();
+
+        $user->boards()->find($id)->update($request->validated());
+
+        return redirect()->route('board.show', ['board' => $id]);
     }
 
     /**
@@ -78,6 +90,12 @@ class BoardController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = Auth::user();
+
+        $board = $user->boards()->findOrFail($id);
+
+        $board->delete();
+
+        return redirect()->route('dashboard');
     }
 }
