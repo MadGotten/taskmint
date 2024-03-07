@@ -24,6 +24,7 @@ class BoardRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:50'],
+            'email' => ['nullable','email'],
         ];
     }
 }

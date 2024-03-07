@@ -7,7 +7,18 @@ import BoardForm from './Partials/BoardForm.jsx'
 export default function Edit({ auth, board }) {
     const { data, setData, patch, delete: destroy, errors, processing, recentlySuccessful } = useForm({
         name: board.name,
+        email: board.email ? board.email: '',
+        users: board.users,
     });
+    const deleteUser = (id) => {
+        data.users.splice(id, 1)
+
+        const updatedUsers = data.users.slice()
+
+        setData({...data, users: updatedUsers })
+
+        destroy(route('board.users.destroy', {board: board.id, user: id}));
+    };
 
     const deleteTask = (e) => {
         e.preventDefault();
@@ -40,7 +51,7 @@ export default function Edit({ auth, board }) {
                             </p>
                         </header>
 
-                        <BoardForm submit={submit} data={data} setData={setData} errors={errors} processing={processing} recentlySuccessful={recentlySuccessful}>
+                        <BoardForm auth={auth.user} submit={submit} deleteUser={deleteUser} data={data} setData={setData} errors={errors} processing={processing} recentlySuccessful={recentlySuccessful}>
                             <DangerButton onClick={deleteTask} disabled={processing}>
                                 Delete board
                             </DangerButton>

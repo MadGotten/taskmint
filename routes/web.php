@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Board\UsersInviteController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('board', BoardController::class);
+
+    Route::resource('board.users', UsersInviteController::class);
 
     Route::resource('board.task', TaskController::class);
     //Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
