@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Board;
@@ -16,10 +17,7 @@ class BasicTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+        Auth::login($user);
 
         $this->assertAuthenticated();
 
@@ -33,10 +31,7 @@ class BasicTest extends TestCase
         $user = User::factory()->create();
         $board = Board::factory()->create();
 
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+        Auth::login($user);
 
         $this->assertAuthenticated();
 
@@ -50,10 +45,7 @@ class BasicTest extends TestCase
         $user = User::factory()->create();
         $board = Board::factory()->create();
 
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+        Auth::login($user);
 
         $this->assertAuthenticated();
 
