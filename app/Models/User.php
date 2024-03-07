@@ -46,6 +46,6 @@ class User extends Authenticatable
     // Relationships
     public function boards()
     {
-        return $this->hasMany(Board::class, 'user_id');
+        return $this->belongsToMany(Board::class, 'user_board');
     }
 }
